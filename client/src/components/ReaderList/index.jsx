@@ -40,8 +40,8 @@ const ReaderList = () => {
       <ul className={styles.list}>
         {readers.map(reader => (
           <li key={reader.id} className={styles.listItem}>
-            <span className={styles.name}>{reader.name}</span>
-            <span className={styles.phone}>{reader.phoneNumber}</span>
+            <span className={styles.name}>Ім'я: {reader.name}</span>
+            <span className={styles.phone}>Телефон: {reader.phoneNumber}</span>
             <button
               className={styles.deleteButton}
               onClick={() => handleDelete(reader.id)}
