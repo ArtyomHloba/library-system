@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   Reader.init(
     {
       name: DataTypes.STRING,
-      phoneNumber: DataTypes.STRING, // Added phoneNumber field
+      phoneNumber: DataTypes.STRING,
     },
     {
       sequelize,

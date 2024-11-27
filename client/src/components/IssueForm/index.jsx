@@ -27,10 +27,10 @@ const IssueForm = ({ refreshIssues }) => {
     axios
       .post('http://localhost:3000/api/issues', { bookId, readerId, issueDate })
       .then(() => {
-        refreshIssues() // Обновляем данные
-        setBookId('') // Сбрасываем выбранную книгу
-        setReaderId('') // Сбрасываем выбранного читателя
-        setIssueDate('') // Сбрасываем дату
+        refreshIssues()
+        setBookId('')
+        setReaderId('')
+        setIssueDate('')
       })
       .catch(error => console.error('Ошибка при выдаче книги:', error))
   }
