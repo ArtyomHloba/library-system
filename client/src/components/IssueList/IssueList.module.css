@@ -22,8 +22,9 @@
 
 .listItem {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
