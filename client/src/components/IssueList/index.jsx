@@ -4,7 +4,7 @@ import styles from './IssueList.module.css'
 
 const IssueList = () => {
   const [issues, setIssues] = useState([])
-  const [error, setError] = useState(null) // Для отображения ошибок
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     axios
@@ -20,7 +20,6 @@ const IssueList = () => {
     axios
       .delete(`http://localhost:3000/api/issues/${id}`)
       .then(() => {
-        // Обновляем список без удаленной записи
         setIssues(prevIssues => prevIssues.filter(issue => issue.id !== id))
       })
       .catch(error => {
@@ -30,7 +29,7 @@ const IssueList = () => {
   }
 
   if (error) {
-    return <div className={styles.error}>{error}</div> // Выводим ошибку
+    return <div className={styles.error}>{error}</div>
   }
 
   return (
