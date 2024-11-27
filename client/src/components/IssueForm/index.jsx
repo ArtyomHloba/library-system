@@ -9,7 +9,6 @@ const IssueForm = ({ refreshIssues }) => {
   const [issueDate, setIssueDate] = useState('')
 
   useEffect(() => {
-    // Получаем список книг и читателей при загрузке компонента
     axios
       .get('http://localhost:3000/api/books')
       .then(response => {
@@ -32,12 +31,11 @@ const IssueForm = ({ refreshIssues }) => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    // Отправляем запрос для создания записи о выдаче книги
     axios
       .post('http://localhost:3000/api/issues', { bookId, readerId, issueDate })
       .then(response => {
         console.log('Book issued:', response.data)
-        refreshIssues() // Обновляем список выданных книг
+        refreshIssues()
       })
       .catch(error => {
         console.error('There was an error issuing the book!', error)

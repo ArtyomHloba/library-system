@@ -9,12 +9,10 @@ const BookForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    // Отправляем запрос на создание новой книги
     axios
       .post('http://localhost:3000/api/books', { title, author, year })
       .then(response => {
         console.log('Book created:', response.data)
-        // После добавления книги можно очистить форму или обновить список
       })
       .catch(error => {
         console.error('There was an error creating the book!', error)

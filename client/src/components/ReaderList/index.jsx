@@ -5,7 +5,6 @@ const ReaderList = () => {
   const [readers, setReaders] = useState([])
 
   useEffect(() => {
-    // Получаем всех читателей при загрузке компонента
     axios
       .get('http://localhost:3000/api/readers')
       .then(response => {

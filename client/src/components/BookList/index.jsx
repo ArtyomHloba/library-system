@@ -5,7 +5,6 @@ const BookList = () => {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
-    // Получаем все книги при загрузке компонента
     axios
       .get('http://localhost:3000/api/books')
       .then(response => {

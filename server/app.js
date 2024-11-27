@@ -9,16 +9,13 @@ const bookRoutes = require('./routes/bookRoutes');
 const readerRoutes = require('./routes/readerRoutes');
 const issueRoutes = require('./routes/issueRoutes');
 
-// Middleware
-app.use(cors()); // Разрешение кросс-доменных запросов
-app.use(bodyParser.json()); // Для обработки JSON в теле запросов
+app.use(cors());
+app.use(bodyParser.json());
 
-// Использование маршрутов
 app.use('/api/books', bookRoutes);
 app.use('/api/readers', readerRoutes);
 app.use('/api/issues', issueRoutes);
 
-// Подключение к базе данных и запуск сервера
 sequelize
   .authenticate()
   .then(() => {

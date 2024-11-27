@@ -7,12 +7,11 @@ const ReaderForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
 
-    // Отправляем запрос на добавление нового читателя
     axios
       .post('http://localhost:3000/api/readers', { name })
       .then(response => {
         console.log('Reader added:', response.data)
-        setName('') // Очищаем поле после добавления
+        setName('')
       })
       .catch(error => {
         console.error('There was an error adding the reader!', error)

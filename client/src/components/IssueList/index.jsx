@@ -5,7 +5,6 @@ const IssueList = () => {
   const [issues, setIssues] = useState([])
 
   useEffect(() => {
-    // Получаем все записи о выдаче книг при загрузке компонента
     axios
       .get('http://localhost:3000/api/issues')
       .then(response => {
