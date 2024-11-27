@@ -1,6 +1,6 @@
 const { Reader } = require('../models');
 
-// Get all readers
+// Получение всех читателей
 exports.getReaders = async (req, res) => {
   try {
     const readers = await Reader.findAll();
@@ -10,6 +10,7 @@ exports.getReaders = async (req, res) => {
   }
 };
 
+// Создание нового читателя
 exports.createReader = async (req, res) => {
   try {
     const { name, phoneNumber } = req.body;
@@ -17,5 +18,22 @@ exports.createReader = async (req, res) => {
     res.status(201).json(newReader);
   } catch (error) {
     res.status(500).json({ message: 'Error creating reader', error });
+  }
+};
+
+// Удаление читателя по ID
+exports.deleteReader = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const reader = await Reader.findByPk(id);
+
+    if (!reader) {
+      return res.status(404).json({ message: 'Reader not found' });
+    }
+
+    await reader.destroy();
+    res.status(200).json({ message: 'Reader deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting reader', error });
   }
 };

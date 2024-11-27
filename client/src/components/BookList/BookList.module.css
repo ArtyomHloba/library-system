@@ -24,3 +24,16 @@
 .listItem:last-child {
   border-bottom: none;
 }
+
+.deleteButton {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.deleteButton:hover {
+  background-color: darkred;
+}
