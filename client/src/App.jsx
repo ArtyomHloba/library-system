@@ -12,7 +12,6 @@ const App = () => {
   const [books, setBooks] = useState([])
   const [readers, setReaders] = useState([])
 
-  // Функция для обновления списка выданных книг
   const refreshIssues = () => {
     axios
       .get('http://localhost:3000/api/issues')
@@ -24,7 +23,6 @@ const App = () => {
       })
   }
 
-  // Получаем список книг и читателей при загрузке страницы
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/books')
@@ -48,27 +46,20 @@ const App = () => {
   return (
     <div>
       <h1>Library System</h1>
-
-      {/* Форма для добавления новой книги */}
       <BookForm />
 
-      {/* Список книг */}
       <BookList books={books} />
 
-      {/* Форма для добавления нового читателя */}
       <ReaderForm />
 
-      {/* Список читателей */}
       <ReaderList readers={readers} />
 
-      {/* Форма для выдачи книги, передаем функцию обновления данных */}
       <IssueForm
         refreshIssues={refreshIssues}
         books={books}
         readers={readers}
       />
 
-      {/* Список выданных книг */}
       <IssueList issues={issues} />
     </div>
   )
