@@ -4,12 +4,17 @@ import styles from './ReaderList.module.css'
 
 const ReaderList = () => {
   const [readers, setReaders] = useState([])
+  const [filteredReaders, setFilteredReaders] = useState([]) // Состояние для отфильтрованных читателей
+  const [searchTerm, setSearchTerm] = useState('') // Состояние для строки поиска
   const [error, setError] = useState(null)
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/readers')
-      .then(response => setReaders(response.data))
+      .then(response => {
+        setReaders(response.data)
+        setFilteredReaders(response.data) // Изначально все читатели
+      })
       .catch(error => {
         console.error('Ошибка при загрузке читателей:', error)
         setError('Ошибка при загрузке данных')
@@ -20,14 +25,26 @@ const ReaderList = () => {
     axios
       .delete(`http://localhost:3000/api/readers/${id}`)
       .then(() => {
-        setReaders(prevReaders =>
-          prevReaders.filter(reader => reader.id !== id)
-        )
+        setReaders(prevReaders => {
+          const updatedReaders = prevReaders.filter(reader => reader.id !== id)
+          setFilteredReaders(updatedReaders) // Обновляем фильтрованный список
+          return updatedReaders
+        })
       })
       .catch(error => {
         console.error('Ошибка при удалении читателя:', error)
         setError('Не удалось удалить читателя')
       })
+  }
+
+  const handleSearch = e => {
+    const value = e.target.value.toLowerCase()
+    setSearchTerm(value)
+    setFilteredReaders(
+      readers.filter(reader =>
+        `${reader.name} ${reader.phoneNumber}`.toLowerCase().includes(value)
+      )
+    )
   }
 
   if (error) {
@@ -37,8 +54,15 @@ const ReaderList = () => {
   return (
     <div className={styles.container}>
       <h2 className={styles.header}>Список читачів</h2>
+      <input
+        type='text'
+        placeholder="Пошук за ім'ям або телефоном"
+        value={searchTerm}
+        onChange={handleSearch}
+        className={styles.searchInput}
+      />
       <ul className={styles.list}>
-        {readers.map(reader => (
+        {filteredReaders.map(reader => (
           <li key={reader.id} className={styles.listItem}>
             <span className={styles.name}>Ім'я: {reader.name}</span>
             <span className={styles.phone}>Телефон: {reader.phoneNumber}</span>
