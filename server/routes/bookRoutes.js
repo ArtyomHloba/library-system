@@ -1,11 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const bookController = require('../controllers/bookController')
+const express = require('express');
+const router = express.Router();
+const bookController = require('../controllers/bookController');
 
 // Получить все книги
-router.get('/', bookController.getBooks)
+router.get('/', bookController.getBooks);
 
 // Создать новую книгу
-router.post('/', bookController.createBook)
+router.post('/', bookController.createBook);
 
-module.exports = router
+module.exports = router;

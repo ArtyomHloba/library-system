@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -8,24 +8,24 @@ module.exports = {
         {
           name: 'John Doe',
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           name: 'Jane Smith',
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         },
         {
           name: 'Alice Johnson',
           createdAt: new Date(),
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       ],
       {}
-    )
+    );
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Readers', null, {})
-  }
-}
+    await queryInterface.bulkDelete('Readers', null, {});
+  },
+};
