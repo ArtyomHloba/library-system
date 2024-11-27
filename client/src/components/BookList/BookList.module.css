@@ -15,7 +15,7 @@
 
 .listItem {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 10px;
   background: white;
@@ -27,6 +27,11 @@
 
 .listItem:hover {
   background-color: #f0f0f0;
+}
+
+.title {
+  color: black;
+  font-weight: 700;
 }
 
 .deleteButton {

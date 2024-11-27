@@ -5,15 +5,15 @@ import styles from './BookList.module.css'
 const BookList = () => {
   const [books, setBooks] = useState([])
   const [error, setError] = useState(null)
-  const [searchTerm, setSearchTerm] = useState('') // Состояние для строки поиска
-  const [filteredBooks, setFilteredBooks] = useState([]) // Отфильтрованные книги
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredBooks, setFilteredBooks] = useState([])
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/books')
       .then(response => {
         setBooks(response.data)
-        setFilteredBooks(response.data) // Изначально все книги
+        setFilteredBooks(response.data)
       })
       .catch(error => {
         console.error('Ошибка при загрузке списка книг:', error)
@@ -21,7 +21,6 @@ const BookList = () => {
       })
   }, [])
 
-  // Обработчик удаления
   const handleDelete = id => {
     axios
       .delete(`http://localhost:3000/api/books/${id}`)
@@ -67,7 +66,10 @@ const BookList = () => {
       <ul className={styles.list}>
         {filteredBooks.map(book => (
           <li key={book.id} className={styles.listItem}>
-            {book.title} — {book.author} ({book.year})
+            <span className={styles.title}>Книга: </span>
+            {book.title} <span className={styles.title}>Автор: </span>
+            {book.author} <span className={styles.title}>Рік:</span>({book.year}
+            )
             <button
               className={styles.deleteButton}
               onClick={() => handleDelete(book.id)}
