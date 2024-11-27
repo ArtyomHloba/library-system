@@ -1,10 +1,9 @@
 const express = require('express');
 const app = express();
-const cors = require('cors'); // Для работы с кросс-доменными запросами
-const bodyParser = require('body-parser'); // Для обработки тела запросов
-const { sequelize } = require('./models'); // Подключение к Sequelize
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { sequelize } = require('./models');
 
-// Маршруты
 const bookRoutes = require('./routes/bookRoutes');
 const readerRoutes = require('./routes/readerRoutes');
 const issueRoutes = require('./routes/issueRoutes');
