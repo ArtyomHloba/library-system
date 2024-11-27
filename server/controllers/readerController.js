@@ -1,6 +1,6 @@
 const { Reader } = require('../models');
 
-// Получение всех читателей
+
 exports.getReaders = async (req, res) => {
   try {
     const readers = await Reader.findAll();
@@ -10,7 +10,7 @@ exports.getReaders = async (req, res) => {
   }
 };
 
-// Создание нового читателя
+
 exports.createReader = async (req, res) => {
   try {
     const { name, phoneNumber } = req.body;
@@ -21,7 +21,6 @@ exports.createReader = async (req, res) => {
   }
 };
 
-// Удаление читателя по ID
 exports.deleteReader = async (req, res) => {
   try {
     const { id } = req.params;

@@ -1,6 +1,5 @@
 const { Issue } = require('../models');
 
-// Получение всех записей о выдаче
 exports.getIssues = async (req, res) => {
   try {
     const issues = await Issue.findAll({
@@ -12,7 +11,6 @@ exports.getIssues = async (req, res) => {
   }
 };
 
-// Создание новой записи о выдаче
 exports.createIssue = async (req, res) => {
   try {
     const { issueDate, bookId, readerId } = req.body;
@@ -23,7 +21,6 @@ exports.createIssue = async (req, res) => {
   }
 };
 
-// Удаление записи о выдаче по ID
 exports.deleteIssue = async (req, res) => {
   try {
     const { id } = req.params;

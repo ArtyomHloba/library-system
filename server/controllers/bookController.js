@@ -1,6 +1,5 @@
 const { Book } = require('../models');
 
-// Получение всех книг
 exports.getBooks = async (req, res) => {
   try {
     const books = await Book.findAll();
@@ -10,7 +9,6 @@ exports.getBooks = async (req, res) => {
   }
 };
 
-// Создание новой книги
 exports.createBook = async (req, res) => {
   try {
     const { title, author, year } = req.body;
@@ -21,7 +19,6 @@ exports.createBook = async (req, res) => {
   }
 };
 
-// Удаление книги по ID
 exports.deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
