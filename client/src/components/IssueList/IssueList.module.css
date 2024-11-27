@@ -60,6 +60,7 @@
   cursor: pointer;
   margin-left: 10px;
   border-radius: 5px;
+  transition: 0.3s;
 }
 
 .deleteButton:hover {
