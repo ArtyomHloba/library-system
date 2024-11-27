@@ -70,7 +70,7 @@ const ReaderList = () => {
               className={styles.deleteButton}
               onClick={() => handleDelete(reader.id)}
             >
-              Удалить
+              Видалити
             </button>
           </li>
         ))}

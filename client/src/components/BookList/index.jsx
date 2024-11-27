@@ -72,7 +72,7 @@ const BookList = () => {
               className={styles.deleteButton}
               onClick={() => handleDelete(book.id)}
             >
-              Удалить
+              Видалити
             </button>
           </li>
         ))}

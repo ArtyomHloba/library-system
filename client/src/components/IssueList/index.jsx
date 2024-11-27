@@ -79,7 +79,7 @@ const IssueList = () => {
               className={styles.deleteButton}
               onClick={() => handleDelete(issue.id)}
             >
-              Удалить
+              Видалити
             </button>
           </li>
         ))}
