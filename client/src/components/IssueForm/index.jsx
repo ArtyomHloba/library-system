@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import styles from './IssueForm.module.css'
 
 const IssueForm = ({ refreshIssues }) => {
   const [books, setBooks] = useState([])
@@ -11,21 +12,13 @@ const IssueForm = ({ refreshIssues }) => {
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/books')
-      .then(response => {
-        setBooks(response.data)
-      })
-      .catch(error => {
-        console.error('There was an error fetching books!', error)
-      })
+      .then(response => setBooks(response.data))
+      .catch(error => console.error('Ошибка при загрузке книг:', error))
 
     axios
       .get('http://localhost:3000/api/readers')
-      .then(response => {
-        setReaders(response.data)
-      })
-      .catch(error => {
-        console.error('There was an error fetching readers!', error)
-      })
+      .then(response => setReaders(response.data))
+      .catch(error => console.error('Ошибка при загрузке читателей:', error))
   }, [])
 
   const handleSubmit = event => {
@@ -33,35 +26,37 @@ const IssueForm = ({ refreshIssues }) => {
 
     axios
       .post('http://localhost:3000/api/issues', { bookId, readerId, issueDate })
-      .then(response => {
-        console.log('Book issued:', response.data)
-        refreshIssues()
-      })
-      .catch(error => {
-        console.error('There was an error issuing the book!', error)
-      })
+      .then(() => refreshIssues())
+      .catch(error => console.error('Ошибка при выдаче книги:', error))
   }
 
   return (
-    <div>
-      <h2>Issue Book</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Book:</label>
-          <select value={bookId} onChange={e => setBookId(e.target.value)}>
-            <option value=''>Select a book</option>
+    <div className={styles.container}>
+      <h2 className={styles.header}>Видати книгу</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Книга:</label>
+          <select
+            value={bookId}
+            onChange={e => setBookId(e.target.value)}
+            className={styles.select}
+          >
+            <option value=''>Оберіть книгу</option>
             {books.map(book => (
               <option key={book.id} value={book.id}>
-                {book.title} by {book.author}
+                {book.title} — {book.author}
               </option>
             ))}
           </select>
         </div>
-
-        <div>
-          <label>Reader:</label>
-          <select value={readerId} onChange={e => setReaderId(e.target.value)}>
-            <option value=''>Select a reader</option>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Читач:</label>
+          <select
+            value={readerId}
+            onChange={e => setReaderId(e.target.value)}
+            className={styles.select}
+          >
+            <option value=''>Оберіть читача</option>
             {readers.map(reader => (
               <option key={reader.id} value={reader.id}>
                 {reader.name}
@@ -69,17 +64,18 @@ const IssueForm = ({ refreshIssues }) => {
             ))}
           </select>
         </div>
-
-        <div>
-          <label>Issue Date:</label>
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Дата видачи:</label>
           <input
             type='date'
             value={issueDate}
             onChange={e => setIssueDate(e.target.value)}
+            className={styles.input}
           />
         </div>
-
-        <button type='submit'>Issue Book</button>
+        <button type='submit' className={styles.button}>
+          Підтвердити
+        </button>
       </form>
     </div>
   )
